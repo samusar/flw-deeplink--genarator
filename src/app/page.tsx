@@ -96,6 +96,10 @@ export default function DeepLinkGenerator() {
             <Button onClick={() => handleCopy(urlDeeplink)} className="mt-2 w-full text-left">
               Copiar Link
             </Button>
+
+            <Button onClick={() => setFormData(link)} className="mt-2 w-full text-left bg-yellow-400 text-gray-900">
+              Usar modelo
+            </Button>
           </li>
         )})}
       </ul>
