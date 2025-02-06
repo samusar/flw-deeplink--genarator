@@ -73,7 +73,7 @@ export default function DeepLinkGenerator() {
       <h1 className="text-xl font-bold mb-4">Gerador de DeepLinks</h1>
       <div className="space-y-2">
         <RadioButtonGroup name="type" value={formData.type} options={[{ display: 'APK', value: 'flwconnect' }, { display: 'EXPO', value: 'exp'}]} onChange={handleChange} defaultValue={formData.type} />
-        {formData.type === 'exp' && <Input name="ipLocal" placeholder="IP local" value={formData.ipLocal || ''} onChange={handleChange} />}
+        {formData.type === 'exp' && <Input name="ipLocal" placeholder="IP local + port (:19000)" value={formData.ipLocal || ''} onChange={handleChange} />}
         <Input name="destinationUrl" placeholder="Destination URL" value={formData.destinationUrl} onChange={handleChange} />
         <Input name="intervalInSeconds" placeholder="Interval in Seconds" value={formData.intervalInSeconds} onChange={handleChange} />
         <Input name="id" placeholder="ID" value={formData.id} onChange={handleChange} />
@@ -85,7 +85,7 @@ export default function DeepLinkGenerator() {
       </div>
       <ul className="mt-4 space-y-2">
         {deeplinks.map((link, index) => {
-          const urlByType = link.type !== 'exp' ? 'flwconnect://' : `exp://${link.ipLocal}:19000/@samusar16/flwconnect`
+          const urlByType = link.type !== 'exp' ? 'flwconnect://' : `exp://${link.ipLocal}/@samusar16/flwconnect`
           const urlDeeplink = `${urlByType}?destinationUrl=${encodeURIComponent(link.destinationUrl)}&intervalInSeconds=${link.intervalInSeconds}&id=${link.id}&name=${encodeURIComponent(link.name)}`
           console.log('>>', link.name, link)
           return (
