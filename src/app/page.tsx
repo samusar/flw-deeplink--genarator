@@ -66,6 +66,8 @@ export default function DeepLinkGenerator() {
     });
   };
 
+  console.log('>> general', JSON.stringify(formData, null, 2))
+
   return (
     <div className="p-4 max-w-lg mx-auto">
       <h1 className="text-xl font-bold mb-4">Gerador de DeepLinks</h1>
@@ -81,10 +83,9 @@ export default function DeepLinkGenerator() {
           <Button onClick={clearDeeplinks} className="bg-red-500 hover:bg-red-700">Limpar DeepLinks</Button>
         </div>
       </div>
-      <p>{JSON.stringify(formData, null, 2)}</p>
       <ul className="mt-4 space-y-2">
         {deeplinks.map((link, index) => {
-          const urlByType = link.type !== 'exp' ? 'flwconnect://instructions' : `exp://${link.ipLocal}:19000/@samusar16/flwconnect`
+          const urlByType = link.type !== 'exp' ? 'flwconnect://' : `exp://${link.ipLocal}:19000/@samusar16/flwconnect`
           const urlDeeplink = `${urlByType}?destinationUrl=${encodeURIComponent(link.destinationUrl)}&intervalInSeconds=${link.intervalInSeconds}&id=${link.id}&name=${encodeURIComponent(link.name)}`
           console.log('>>', link.name, link)
           return (
