@@ -81,14 +81,16 @@ export default function DeepLinkGenerator() {
           <Button onClick={clearDeeplinks} className="bg-red-500 hover:bg-red-700">Limpar DeepLinks</Button>
         </div>
       </div>
+      <p>{JSON.stringify(formData, null, 2)}</p>
       <ul className="mt-4 space-y-2">
         {deeplinks.map((link, index) => {
-          const urlDeeplink = `${formData.type !== 'exp' ? 'flwconnect://instructions' : `exp://${link.ipLocal}:19000/@samusar16/flwconnect`}?destinationUrl=${encodeURIComponent(link.destinationUrl)}&intervalInSeconds=${link.intervalInSeconds}&id=${link.id}&name=${encodeURIComponent(link.name)}`
-          
+          const urlByType = link.type !== 'exp' ? 'flwconnect://instructions' : `exp://${link.ipLocal}:19000/@samusar16/flwconnect`
+          const urlDeeplink = `${urlByType}?destinationUrl=${encodeURIComponent(link.destinationUrl)}&intervalInSeconds=${link.intervalInSeconds}&id=${link.id}&name=${encodeURIComponent(link.name)}`
+          console.log('>>', link.name, link)
           return (
           <li key={index} className="p-2 bg-gray-100 rounded flex flex-col items-stretch">
             <a href={urlDeeplink} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">
-              {link.name} - {link.id}
+              {`(${link.type}): ${link.name} - ${link.id}`}
             </a>
             <Button onClick={() => handleCopy(urlDeeplink)} className="mt-2 w-full text-left">
               Copiar Link
