@@ -85,19 +85,19 @@ export default function DeepLinkGenerator() {
       </div>
       <ul className="mt-4 space-y-2">
         {deeplinks.map((link, index) => {
-          const urlByType = link.type !== 'exp' ? 'flwconnect://' : `exp://${link.ipLocal}/@samusar16/flwconnect`
+          const urlByType = link.type !== 'exp' ? 'flwconnect://' : `exp://${link.ipLocal}/--/`
           const urlDeeplink = `${urlByType}?destinationUrl=${encodeURIComponent(link.destinationUrl)}&intervalInSeconds=${link.intervalInSeconds}&id=${link.id}&name=${encodeURIComponent(link.name)}`
           console.log('>>', link.name, link)
           return (
-          <li key={index} className="p-2 bg-gray-100 rounded flex flex-col items-stretch">
+          <li key={index} className="p-2 bg-gray-100 rounded flex flex-col items-stretch gap-2">
             <a href={urlDeeplink} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">
-              {`(${link.type}): ${link.name} - ${link.id}`}
+              {`${link.type}: {${link.id}: ${link.name}}`}
             </a>
             <Button onClick={() => handleCopy(urlDeeplink)} className="mt-2 w-full text-left">
               Copiar Link
             </Button>
 
-            <Button onClick={() => setFormData(link)} className="mt-2 w-full text-left bg-yellow-400 text-gray-900">
+            <Button onClick={() => setFormData(link)} className="mt-2 w-full text-left bg-yellow-400  hover:bg-yellow-700 text-gray-900">
               Usar modelo
             </Button>
           </li>
