@@ -71,7 +71,7 @@ export default function DeepLinkGenerator() {
       <h1 className="text-xl font-bold mb-4">Gerador de DeepLinks</h1>
       <div className="space-y-2">
         <RadioButtonGroup name="type" value={formData.type} options={[{ display: 'APK', value: 'flwconnect' }, { display: 'EXPO', value: 'exp'}]} onChange={handleChange} defaultValue={formData.type} />
-        {formData.type === 'exp' && <Input name="typeComplement" placeholder="IP local" value={formData.ipLocal || ''} onChange={handleChange} />}
+        {formData.type === 'exp' && <Input name="ipLocal" placeholder="IP local" value={formData.ipLocal || ''} onChange={handleChange} />}
         <Input name="destinationUrl" placeholder="Destination URL" value={formData.destinationUrl} onChange={handleChange} />
         <Input name="intervalInSeconds" placeholder="Interval in Seconds" value={formData.intervalInSeconds} onChange={handleChange} />
         <Input name="id" placeholder="ID" value={formData.id} onChange={handleChange} />
